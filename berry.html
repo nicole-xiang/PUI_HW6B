@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Nature.io</title>
+  </head>
+
+  <body>
+    <!-- nav bar -->
+    <div class="nav">
+      <div id="nav_container">
+        <h3 class = logo>Nature.io</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="explore.html">Explore</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="visit.html">Visit</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="cart" href="cart.html">
+            <ion-icon name="cart"></ion-icon><span id="num_items"> 0</span>
+        </a>
+        <a class="login" href="#">Login</a>
+      </div>
+    </div>
+
+    <!-- main section -->
+    <div class = "main">
+        <a href="explore.html" class="back">back</a>
+        <h1 id="drinkTitle">Berry Glad to Meet You</h1>
+        <div class = "container"> 
+        <!-- <img src="images/rating.png" width="5%"> -->
+        <!-- column for image -->
+        <div class="left_column">
+            <img id="active_sel" src="images/product_img.png" alt="product image" >
+            <!-- <img data-image="blueSmoothie" src="images/blueSmoothie.png" alt="blueberry flavored">
+            <img data-image="peachSmothie" src="images/peachSmoothie.png" alt="peach flavored"> -->
+            <form class="purchase_form" onsubmit="return addItem()">
+                <input type="radio" id="one_time" name="purchase_option" value="One time purchase">
+                <label for="one_time">One time purchase ($43.99 | $3.50/bottle)</label><br>
+                <input type="radio" id="subscribe" name="purchase_option" value="Subscribe & purchase">
+                <label for="subscribe">Subscribe & purchase ($35.99 | $3.09/bottle)</label><br>
+                <br>
+                <label for="delivery">Deliver Every</label>
+                <br>
+                <select id="delivery" name="delivery">
+                    <option value="14">14 Days</option>
+                    <option value="30">30 Days</option>
+                    <option value="60">60 Days</option>
+                </select>
+                
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" id = "item_quant" min="1" value="1" required> 
+                <input type="submit" class ="submit_button" value="Add to Cart" >
+            </form>   
+            <p class = "note">One box = 12 bottles</p>
+        </div>
+        <div class="right_column">
+            <div class="product-description">
+                <h3>Product Details</h3>
+                <p>You'll be so glad to meet the antioxidant-rich berries 
+                    and proteins that maximize energy and brain health.
+                </p>
+                <!-- ingredients -->
+                <div class="ingredients">
+                    <p>Ingredients</p>
+                    <div class="column">
+                      <img src="images/ing2.png" alt="coconut" width="80%">
+                    </div>
+                    <div class="column">
+                      <img src="images/ing3.png" alt="banana" width="80%">
+                    </div>
+                    <div class="column">
+                        <img src="images/ing4.png" alt="honey" width="80%">
+                      </div>
+                </div>
+                <br><br><br><br><br>
+                <!-- flavors -->
+                <div class="flavors">
+                    <p>Choose Your Flavor</p>
+                    <div class="column">
+                      <img class="f_option" src="images/raspberry.png" alt="Raspberry" onclick="changeImage('raspberry',1)" width="70%">
+                    </div>
+                    <div class="column">
+                      <img class="f_option" src="images/blueberry.png" alt="Blueberry" onclick="changeImage('blueberry',2)" width="70%">
+                    </div>
+                    <div class="column">
+                      <img class="f_option" src="images/peach.png" alt="Peach" onclick="changeImage('peach',3)" width="70%">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- we also love section -->
+        <div class = "more"> 
+            <h1>We also love</h1>
+            <div class="gallery more_product">
+                <div class = "box"> 
+                    <div class="image">
+                        <a href="#">
+                            <img src="images/2.png" alt="smoothie" width="250" height="223.16">
+                        </a>
+                        <div class="desc">Esspres'shew Self</div>
+                    </div>
+                </div>
+        
+                <div class = "box"> 
+                    <div class="image">
+                        <a href="#">
+                            <img src="images/3.png" alt="smoothie" width="250" height="223.16">
+                        </a>
+                        <div class="desc">Fresh Start Detox</div>
+                    </div>
+                </div>
+        
+                <div class = "box"> 
+                    <div class="image">
+                        <a href="#">
+                            <img src="images/4.png" alt="smoothie" width="250" height="223.16">
+                        </a>
+                        <div class="desc">Straw Na-Na-Na</div>
+                    </div>
+                </div>
+                <div class = "box"> 
+                    <div class="image">
+                        <div class="desc view_more"><a href="explore.html">View More ></a></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <!-- reviews -->
+            <div class="reviews">
+                <h1>Reviews</h1>
+                <div class="container">
+                    <!-- user -->
+                    <div class="r_left_col">
+                        <p class="user">
+                            Alex Chen<br>
+                            12/15/21
+                        </p>
+                    </div>
+                    <!-- comment -->
+                    <div class="r_right_col">
+                        <p class="comment">So so good. Amazing fresh and organic ingredients. Had the avocado toast and the rasperry smoothie. Hands down the best health food I’ve ever had. Right down the street!</p>
+                        <img src="images/5stars.png">
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- user -->
+                    <div class="r_left_col">
+                        <p class="user">
+                            Smith345<br>
+                            12/04/21
+                        </p>
+                    </div>
+                    <!-- comment -->
+                    <div class="r_right_col">
+                        <p class="comment">Fresh, flavourful juice. Little pricey but great for a lazy cleanse. Avocado toast with egg was fresh and filling and tasty, too. I love the blueberry smoothie!</p>
+                        <img src="images/rating.png">
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- user -->
+                    <div class="r_left_col">
+                        <p class="user">
+                            Kate301<br>
+                            11/02/21
+                        </p>
+                    </div>
+                    <!-- comment -->
+                    <div class="r_right_col">
+                        <p class="comment">Makes a pretty good peach banana spinach smoothie; the five year old who needs more veggies in his diet unknowingly approves. Highly recommended.</p>
+                        <img src="images/rating.png">
+                    </div>
+                </div>
+                <br>
+                <a href="#" class="more_comments">Load More Comments</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <ul class="footer-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="visit.html">Visit</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p> Copyright © 2022 Nature.io</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

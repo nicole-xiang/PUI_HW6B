@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Nature.io</title>
+  </head>
+
+  <body>
+    <!-- nav bar -->
+    <div class="nav">
+      <div id="nav_container">
+        <h3 class = logo>Nature.io</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="active" href="visit.html">Visit</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a class="cart" href="cart.html">
+          <ion-icon name="cart"></ion-icon><span id="num_items"> 0</span>
+        </a>
+        <a class="login" href="#">Login</a>
+      </div>
+    </div>
+
+    <!-- main section -->
+    <div class = "main">
+        <h1 class = "title">Visit Us</h1>
+        <div class="visit_subtitle">
+            <p>Find a store near you</p>
+            <span class="store_map"><a href="https://goo.gl/maps/UjUQhKdJDNpJbV3T6" target="_blank">Shadyside</a></span>
+            <span class="store_map"><a href="https://g.page/cleanjuiceeastliberty?share" target="_blank">Squirrel Hill</a></span>
+        </div>
+       
+        <div class="container visit"> 
+            <div class="v_left_column">
+                <img class="contact_img" src="images/squirrel.png">
+            </div>
+            <div class="v_right_column"> 
+                <h3>Squirrel Hill</h3>
+                <p class="descrip">Stop in and enjoy connecting with the caring team in our original shop. The charming village of Squirrel Hill is bustling with quaint shops and seasonal events.</p>
+                <div class="container"> 
+                <div class="a_left_col"> 
+                    <a class="address" href="#">5871 Forbes Ave,<br> 
+                    Pittsburgh, PA 15217</a>
+                    <p>412.683.1064</p>
+                </div>
+                <div class="a_right_col"> 
+                    <p>Mon. – Fri. 8:00a – 2:00p<br>
+                        Sat. 9:00a – 4:00p<br>
+                        Sun. 9:00a – 2:00p<br></p>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="container visit"> 
+            <div class="v_left_column">
+                <img class="contact_img" src="images/shadyside.png">
+            </div>
+            <div class="v_right_column"> 
+                <h3>Shadyside</h3>
+                <p class="descrip">Stop in and enjoy connecting with the caring team in our original shop. The charming village of Shadyside is bustling with quaint shops and seasonal events.</p>
+                <div class="container"> 
+                <div class="a_left_col"> 
+                    <a class="address" href="#">733 Copeland Street,<br>
+                        Pittsburgh, PA 15232</a>
+                    <p>412.683.1064</p>
+                </div>
+                <div class="a_right_col"> 
+                    <p>Mon. – Fri. 8:00a – 2:00p<br>
+                        Sat. 9:00a – 4:00p<br>
+                        Sun. 9:00a – 2:00p<br></p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <ul class="footer-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="visit.html">Visit</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p> Copyright © 2022 Nature.io</p>
+    </footer>
+    
+    <script src="script.js"></script>
+    <!-- icon script -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
