@@ -1,22 +1,20 @@
 class cartItem {
-    constructor(title, flavor, quantity, itemPrice) {
-      this.title = title; // string 
-      this.flavor = flavor; // string
-      this.quantity = quantity; // # boxes (int)  
-      this.itemPrice = itemPrice; // single item price (int)
-      this.total = this.quantity * this.itemPrice // item total (int)
+    constructor(tag, title, flavor, quantity, deliveryPeriod, itemPrice) {
+        this.tag = tag; // string for image
+        this.title = title; // string 
+        this.deliveryPeriod = deliveryPeriod; 
+        this.flavor = flavor; // string
+        this.quantity = quantity; // # boxes (int)  
+        this.itemPrice = itemPrice; // single item price (int)
+        this.total = this.quantity * this.itemPrice // item total (int)
     }
 
     // Methods 
 
   }
-function setDrink(){
-    // hard code all drink objects 
-    // check which drink object it is based on name   
-}
 
 function changeImage(flavor,ele) {
-    var source = "images/"+flavor+"Smoothie.png"
+    var source = "images/"+flavor+".png"
     document.getElementById("active_sel").src = source;
     var flavors = document.getElementsByClassName("f_option")
     if (flavors[ele-1].style.borderWidth == "") {
@@ -29,7 +27,7 @@ function changeImage(flavor,ele) {
     }
     else { // unclick to go back to original image 
         flavors[ele-1].style.border = "";
-        document.getElementById("active_sel").src = "images/product_img.png";
+        document.getElementById("active_sel").src = "images/berryOriginal.png";
     }
 }
 
@@ -58,6 +56,7 @@ function setDrinkCart(product){
     }
     // add items into cart local storage
     localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
+
     // delete function 
 }
 
@@ -68,13 +67,13 @@ function addItem(){
 
     // update cart page 
     // make new drink object 
-    title = document.getElementById("drinkTitle").innerHTML;
-    quant = parseInt(document.getElementById('item_quant').value); 
+    var title = document.getElementById('drinkTitle').innerHTML;
+    var quant = parseInt(document.getElementById('item_quant').value); 
     if (document.getElementById("one_time").checked == true) {
-        price = 43.99;
+        var price = 43.99;
     } 
     else{
-        price = 35.99; 
+        var price = 35.99; 
     }
     var flavors = document.getElementsByClassName("f_option");
     flavor = "Original";
@@ -83,7 +82,11 @@ function addItem(){
             flavor = flavors[i].alt;
         }
     }
-    product = new cartItem(title,flavor,quant,price);
+    spaceIndex = title.indexOf(" ");
+    var tag = `${title.substring(0, spaceIndex).toLowerCase()}${flavor}`;
+    var deliveryPeriod = document.getElementById("delivery").value;
+    console.log(deliveryPeriod);
+    var product = new cartItem(tag, title,flavor,quant,deliveryPeriod,price);
     console.log(product);
     setDrinkCart(product); // add product to cart page 
     alert("Added item to cart");
@@ -97,6 +100,7 @@ function onLoadCart(){
         document.getElementById("num_items").innerHTML = num_products;
         console.log(document.getElementById("num_items").innerHTML);
     }
+    displayDrink();
 }
 
 function setQuantity(){
@@ -121,17 +125,40 @@ function displayDrink(){
     // get local storage drinks
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
-    let cart_page = document.getElementsByClassName("cart_page");
+    let cart_products = document.getElementsByClassName("cart_products");
     // on the cart page AND exists items in cart
-    if (itemsInCart && cart_page.length!=0){
+    if (itemsInCart && cart_products.length!=0){
+        // console.log(cart_page.innerHTML);
+        cart_products.innerHTML = "";
         // go through items in cart to display
-        console.log(itemsInCart);
-        // for (let i = 0; i<itemsInCart.length; i++){
-        //     let drink = itemsInCart[i];
-        // }
+        console.log("output: cart items");
+        Object.values(itemsInCart).map(item => {
+            console.log(item);
+            // console.log(cart_page.innerHTML);
+            cart_products.innerHTML +=  "<h3>This is the text which has been inserted by JS</h3>";
+        //     cart_products.innerHTML += `<div class="container cart_product">
+        //     <img class="product_image" src="images/${item.tag}.png">
+        //     <div class="product_info">
+        //         <h3 class="product_title">${item.title}</h3>
+        //         <p class="product_flavor">${item.flavor}</p>
+        //     </div>
+        //     <div class="quantity">
+        //       <!-- <span class="minus">-</span>
+        //       <span>${item.quantity}</span>
+        //       <span class="plus">+</span> -->
+        //     </div>
+        //     <div class="delivery_period">${item.deliveryPeriod}</div>
+        //     <div class="price">${item.total}</div>
+        //     <a class="delete" href="#">
+        //       <ion-icon name="trash" class="trash_icon"></ion-icon>
+        //     </a> 
+        // </div> `;
+        // console.log(cart_products.innerHTML);
+        console.log("finished adding");
+        })
+        console.log(document.getElementsByClassName("cart_products"));
     }
-
+     
 }
 window.onload = onLoadCart();
-displayDrink();
 

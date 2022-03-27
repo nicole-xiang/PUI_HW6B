@@ -415,9 +415,11 @@ textarea{
 .price {
     width:23%;
 }
-.cart_products {
+.cart_products{
     margin:2% 5%;
     margin-right:20%;
+}
+.cart_product {
     padding:0;
     justify-content: space-between
 }
