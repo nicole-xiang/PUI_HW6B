@@ -8,9 +8,6 @@ class cartItem {
         this.itemPrice = itemPrice; // single item price (int)
         this.total = this.quantity * this.itemPrice // item total (int)
     }
-
-    // Methods 
-
   }
 
 function changeImage(flavor,ele) {
@@ -128,37 +125,63 @@ function displayDrink(){
     let cart_products = document.getElementsByClassName("cart_products");
     // on the cart page AND exists items in cart
     if (itemsInCart && cart_products.length!=0){
-        // console.log(cart_page.innerHTML);
-        cart_products.innerHTML = "";
+        console.log(cart_products[0].innerHTML);
+        // cart_products.innerHTML[0] = "";
         // go through items in cart to display
         console.log("output: cart items");
         Object.values(itemsInCart).map(item => {
-            console.log(item);
+            console.log(item.title);
             // console.log(cart_page.innerHTML);
-            cart_products.innerHTML +=  "<h3>This is the text which has been inserted by JS</h3>";
-        //     cart_products.innerHTML += `<div class="container cart_product">
-        //     <img class="product_image" src="images/${item.tag}.png">
-        //     <div class="product_info">
-        //         <h3 class="product_title">${item.title}</h3>
-        //         <p class="product_flavor">${item.flavor}</p>
-        //     </div>
-        //     <div class="quantity">
-        //       <!-- <span class="minus">-</span>
-        //       <span>${item.quantity}</span>
-        //       <span class="plus">+</span> -->
-        //     </div>
-        //     <div class="delivery_period">${item.deliveryPeriod}</div>
-        //     <div class="price">${item.total}</div>
-        //     <a class="delete" href="#">
-        //       <ion-icon name="trash" class="trash_icon"></ion-icon>
-        //     </a> 
-        // </div> `;
-        // console.log(cart_products.innerHTML);
-        console.log("finished adding");
+            cart_products[0].innerHTML += `<div class="cart_product">
+            <img class="product_image" src="images/${item.tag}.png">
+            <div class="product_info cart_content_product"> 
+                <span class="product_title">${item.title}</span>
+                <br>
+                <span class="product_flavor">${item.flavor}</span>
+            </div>
+            <div class="quantity">
+              <span class="minus" ">-</span>
+              <span class="quantity_num">${item.quantity}</span>
+              <span class="plus")">+</span>
+            </div>
+            <div class="delivery_period">
+            <select id="delivery_cart" name="delivery">
+                    <option value="none" selected disabled hidden>${item.deliveryPeriod} Days</option>
+                    <option value="14">14 Days</option>
+                    <option value="30">30 Days</option>
+                    <option value="60">60 Days</option>
+            </select></div>
+            <div class="price">${item.total}</div>
+            <a class="delete" href="#" onclick="removeItem()">
+              <ion-icon name="trash" class="trash_icon"></ion-icon>
+            </a> 
+        </div> `;
         })
-        console.log(document.getElementsByClassName("cart_products"));
     }
-     
 }
+// function decrQuant(item){
+//     console.log("Decreasing count");
+//     // decrease item qantity AND change displayd text
+//     if (item.quantity > 1){
+//         item.quantity -= 1;
+//         console.log(document.getElementsByClassName("quantity_num")[0]);
+//         // document.getElementsByClassName("quantity_num")[0] = item.quantity;
+         
+//     } 
+// }
 window.onload = onLoadCart();
+
+let deleteBtns = document.getElementsByClassName("delete");
+let items = JSON.parse(localStorage.getItem('itemsInCart'));
+let i = 0;
+console.log(items);
+for (item in items) {
+    console.log(item.valueOf());
+    deleteBtns[i].addEventListener("click", removeItem(item));
+    i++; 
+}
+
+function removeItem(tag) {
+    console.log(tag);
+}
 
