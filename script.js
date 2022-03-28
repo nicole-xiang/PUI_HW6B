@@ -33,7 +33,7 @@ function setDrinkCart(product){
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
     // if nonempty cart
-    let tag = `${product.title}, ${product.flavor}`;
+    let tag = product.tag;
     console.log(tag); 
     if (itemsInCart != null){
         if (!(tag in itemsInCart)){
@@ -53,8 +53,6 @@ function setDrinkCart(product){
     }
     // add items into cart local storage
     localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
-
-    // delete function 
 }
 
 function addItem(){
@@ -98,8 +96,35 @@ function onLoadCart(){
         console.log(document.getElementById("num_items").innerHTML);
     }
     displayDrink();
+    removeWrapper();
+}
+function removeWrapper(){
+    // add delete function
+    let itemsInCart = localStorage.getItem('itemsInCart');
+    itemsInCart = JSON.parse(itemsInCart);
+    let cart_products = document.getElementsByClassName("cart_products");
+    // on the cart page AND exists items in cart
+    if (itemsInCart && cart_products.length!=0){
+        let i = 0; 
+        let deleteBtns = document.getElementsByClassName("delete");
+        Object.values(itemsInCart).map(item => {
+            deleteBtns[i].addEventListener("click", ()=>{removeItem(item)});
+            i++;
+        })
+    }
 }
 
+function removeItem(item) {
+    // console.log(item.tag == "berryOriginal");
+    console.log(item);
+    // delete itemsInCart[item.tag];
+    // localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
+    // console.log(itemsInCart);
+    // let num_products = localStorage.getItem('num_items');
+    // num_products = parseInt(num_products); // convert to int
+    // console.log(item.quantity);
+    // localStorage.setItem('itemsInCart',num_products-item.quantity);
+}
 function setQuantity(){
     console.log("setting quantity")
     let num_products = localStorage.getItem('num_items');
@@ -118,6 +143,7 @@ function setQuantity(){
     }
     return false;
 }
+
 function displayDrink(){
     // get local storage drinks
     let itemsInCart = localStorage.getItem('itemsInCart');
@@ -152,7 +178,7 @@ function displayDrink(){
                     <option value="60">60 Days</option>
             </select></div>
             <div class="price">${item.total}</div>
-            <a class="delete" href="#" onclick="removeItem()">
+            <a class="delete" href="#">
               <ion-icon name="trash" class="trash_icon"></ion-icon>
             </a> 
         </div> `;
@@ -170,18 +196,4 @@ function displayDrink(){
 //     } 
 // }
 window.onload = onLoadCart();
-
-let deleteBtns = document.getElementsByClassName("delete");
-let items = JSON.parse(localStorage.getItem('itemsInCart'));
-let i = 0;
-console.log(items);
-for (item in items) {
-    console.log(item.valueOf());
-    deleteBtns[i].addEventListener("click", removeItem(item));
-    i++; 
-}
-
-function removeItem(tag) {
-    console.log(tag);
-}
 
