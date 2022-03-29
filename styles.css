@@ -380,7 +380,6 @@ textarea{
     /* margin-top: 60px; */
 }
 .v_right_column .descrip {
-
     padding-bottom: 5%;
     border-bottom:0.5px solid black; 
 }
@@ -457,8 +456,26 @@ textarea{
 .quantity_num {
     margin: 0 3%;
 }
-.checkout_btn {
+#checkout{
+    border-top:1px solid rgb(194, 189, 189);
+    margin-left:5%;
+    max-width: 1200px;
+}
+#checkout h3{
+    margin:1% 0;
+    padding:0;
+}
+#empty_cart_link{
+    text-decoration: none;
+    color:#FFBE0B;
+}
+.top_checkout {
     float:right;
+    margin-top: 0.5%;
+    margin-right:8%;
+}
+.checkout_btn {
+    /* float:right; */
     font-family: 'Lato', sans-serif;
     font-size: 17px;
     background-color: #FFBE0B;
@@ -468,8 +485,6 @@ textarea{
     border: none;
     width: 8%;
     text-align: center;
-    margin-top: 0.5%;
-    margin-right:8%;
 }
 .checkout_btn:hover {
     color:white;

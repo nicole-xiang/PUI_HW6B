@@ -6,7 +6,7 @@ class cartItem {
         this.flavor = flavor; // string
         this.quantity = quantity; // # boxes (int)  
         this.itemPrice = itemPrice; // single item price (int)
-        this.total = this.quantity * this.itemPrice // item total (int)
+        this.total = (this.quantity * this.itemPrice).toFixed(2) // item total (int)
     }
   }
 
@@ -44,7 +44,7 @@ function setDrinkCart(product){
             let drink = itemsInCart[tag];
             console.log("increasing existing item quant");
             drink.quantity += product.quantity
-            drink.total = drink.quantity * drink.itemPrice;
+            drink.total = (drink.quantity * drink.itemPrice).toFixed(2);
         }  
     }
     else{ //empty cart, add product
@@ -82,7 +82,9 @@ function addItem(){
     var deliveryPeriod = document.getElementById("delivery").value;
     console.log(deliveryPeriod);
     var product = new cartItem(tag, title,flavor,quant,deliveryPeriod,price);
-    console.log(product);
+    if (document.getElementById("one_time").checked == true) {
+        product.deliveryPeriod = "N/A";
+    } 
     setDrinkCart(product); // add product to cart page 
     alert("Added item to cart");
     return false;
@@ -97,33 +99,71 @@ function onLoadCart(){
     }
     displayDrink();
     removeWrapper();
+    setTotalPayment();
 }
+function setTotalPayment(){
+    let itemsInCart = localStorage.getItem('itemsInCart');
+    itemsInCart = JSON.parse(itemsInCart);
+    let cart_products = document.getElementsByClassName("cart_products");
+    // on the cart page AND exists items in cart
+    if (itemsInCart && cart_products.length != 0){
+        let total = 0;
+        Object.values(itemsInCart).map(item => {
+            total += parseFloat(item.total);
+        })
+        console.log(total);
+        document.getElementById("cart_total").innerHTML = `$${total.toFixed(2)}`;
+    }
+ }
 function removeWrapper(){
     // add delete function
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
     let cart_products = document.getElementsByClassName("cart_products");
+    let length = document.getElementsByClassName("cart_product").length; 
     // on the cart page AND exists items in cart
     if (itemsInCart && cart_products.length!=0){
         let i = 0; 
         let deleteBtns = document.getElementsByClassName("delete");
+        let incrBtns = document.getElementsByClassName("plus");
+        let decrBtns = document.getElementsByClassName("minus");
+        // console.log(Object.length);
         Object.values(itemsInCart).map(item => {
+            console.log(item);
+            console.log(length-i);
             deleteBtns[i].addEventListener("click", ()=>{removeItem(item)});
+            incrBtns[i].addEventListener("click", ()=>{changeQuant(item,"+",length-i)});
+            decrBtns[i].addEventListener("click", ()=>{changeQuant(item,"-",length-i)});
             i++;
         })
     }
 }
 
 function removeItem(item) {
-    // console.log(item.tag == "berryOriginal");
-    console.log(item);
-    // delete itemsInCart[item.tag];
-    // localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
-    // console.log(itemsInCart);
-    // let num_products = localStorage.getItem('num_items');
-    // num_products = parseInt(num_products); // convert to int
+    let itemsInCart = localStorage.getItem('itemsInCart');
+    itemsInCart = JSON.parse(itemsInCart);
+    // console.log(typeof Object.values(itemsInCart)[0]);
+    // go through itemsincart array
+    // console.log(itemsInCart[item.tag]);
+    Object.values(itemsInCart).map(drink => {
+        // removing actual drink
+        if (drink.tag == item.tag){
+            console.log("found drink");
+            delete itemsInCart[item.tag];
+            console.log(itemsInCart);
+        }
+    })
+    localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
+     
+    let num_products = localStorage.getItem('num_items');
+    num_products = parseInt(num_products); // convert to int
     // console.log(item.quantity);
-    // localStorage.setItem('itemsInCart',num_products-item.quantity);
+    // console.log(num_products-item.quantity);
+    localStorage.setItem('num_items',num_products-item.quantity);
+    new_num = parseInt(localStorage.getItem('num_items')); // convert to int
+    document.getElementById("num_items").innerHTML = new_num;
+    // display drinks again
+    location.reload()
 }
 function setQuantity(){
     console.log("setting quantity")
@@ -149,10 +189,14 @@ function displayDrink(){
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
     let cart_products = document.getElementsByClassName("cart_products");
+    // empty cart: display message
+    if ((JSON.stringify(itemsInCart) === '{}' || itemsInCart == null) && cart_products.length!=0){
+        cart_products[0].innerHTML += "<h4>Empty Cart! Start shopping <a href='explore.html' id='empty_cart_link'>here</a></h4>";
+    }
     // on the cart page AND exists items in cart
     if (itemsInCart && cart_products.length!=0){
-        console.log(cart_products[0].innerHTML);
-        // cart_products.innerHTML[0] = "";
+        // console.log(cart_products[0].innerHTML);
+        cart_products.innerHTML = "";
         // go through items in cart to display
         console.log("output: cart items");
         Object.values(itemsInCart).map(item => {
@@ -166,7 +210,7 @@ function displayDrink(){
                 <span class="product_flavor">${item.flavor}</span>
             </div>
             <div class="quantity">
-              <span class="minus" ">-</span>
+              <span class="minus">-</span>
               <span class="quantity_num">${item.quantity}</span>
               <span class="plus")">+</span>
             </div>
@@ -177,7 +221,7 @@ function displayDrink(){
                     <option value="30">30 Days</option>
                     <option value="60">60 Days</option>
             </select></div>
-            <div class="price">${item.total}</div>
+            <div class="price item_total">${item.total}</div>
             <a class="delete" href="#">
               <ion-icon name="trash" class="trash_icon"></ion-icon>
             </a> 
@@ -185,15 +229,50 @@ function displayDrink(){
         })
     }
 }
-// function decrQuant(item){
-//     console.log("Decreasing count");
-//     // decrease item qantity AND change displayd text
-//     if (item.quantity > 1){
-//         item.quantity -= 1;
-//         console.log(document.getElementsByClassName("quantity_num")[0]);
-//         // document.getElementsByClassName("quantity_num")[0] = item.quantity;
-         
-//     } 
-// }
+function changeQuant(item,sign){
+    console.log(item);
+    let num_products = localStorage.getItem('num_items');
+    num_products = parseInt(num_products); // convert to int
+    // decrease item qantity AND change displayd text
+    if (item.quantity > 1 && sign == "-"){
+        console.log("decreasing quant");
+        console.log(item);
+        item.quantity -= 1;
+        localStorage.setItem('num_items',num_products-1);
+    } 
+    if (sign == "+"){
+        item.quantity += 1;
+        console.log("increasing quant");
+        localStorage.setItem('num_items',num_products+1);
+    }
+    // update displayed price and quantity
+    item.total = (item.itemPrice*item.quantity).toFixed(2); 
+    let titles = document.getElementsByClassName("product_title");
+    let flavors = document.getElementsByClassName("product_flavor");
+    console.log(titles);
+    console.log(flavors.length);
+    for (let i = 0; i<titles.length; i++){
+        if (titles[i].innerHTML == item.title && flavors[i].innerHTML == item.flavor) {
+            document.getElementsByClassName("quantity_num")[i].innerHTML = item.quantity;
+            document.getElementsByClassName("item_total")[i].innerHTML = item.total;
+    
+        }
+    }
+    
+    // update localStorage 
+    let itemsInCart = localStorage.getItem('itemsInCart');
+    itemsInCart = JSON.parse(itemsInCart);
+    // go through itemsincart array
+    Object.values(itemsInCart).map(drink => {
+        if (drink.tag == item.tag){
+            drink.quantity = item.quantity;
+            drink.total = item.total;
+        }
+    })
+    localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
+    new_num = parseInt(localStorage.getItem('num_items')); // convert to int
+    document.getElementById("num_items").innerHTML = new_num;
+    setTotalPayment();
+}
 window.onload = onLoadCart();
 
