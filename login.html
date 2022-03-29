@@ -14,9 +14,9 @@
     <!-- nav bar -->
     <div class="nav">
       <div id="nav_container">
-        <h3 class = logo>Nature.io</h3>
+        <h3 class =logo>Nature.io</h3>
         <ul>
-          <li><a class="active" href="#">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="explore.html">Explore</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="visit.html">Visit</a></li>
@@ -25,16 +25,45 @@
         <a class="cart" href="cart.html">
           <ion-icon name="cart"></ion-icon><span id="num_items"> 0</span>
         </a>
-        <a class="login" href="login.html">Login</a>
+        <a class="login" href="#">Login</a>
       </div>
     </div>
+
     <!-- main section -->
-    <div class = "cover_section">
-      <img id="cover_image" src="images/cover.png">
-      <div id="cover_title">
-        <h1>Nature.io, just the refreshment you crave.</h1>
-        <h2>Get started today. <a id="cta" href="explore.html">Explore Drinks</a></h2>
-      </div>
+    <div class = "main">
+      <h1 class = "title">Welcome to Nature.io</h1>
+      <!-- forms -->
+      <div class="container"> 
+      <form>
+        <h2>Log In</h2>
+        <div class="container_form">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Alex Smith" name="uname" required>
+          <br>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <br>
+          <button type="submit" class = "submit_button">Login</button>
+          <a class="forgot" href = "#">Forgot password?</a>
+        </div>
+      </form>
+
+      <form>
+        <h2>Sign Up</h2>
+        <div class="container_form">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Alex Smith" name="uname" required>
+          <br>
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="abc@example.com" name="email" required>
+          <br>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <br>
+          <button type="submit" class = "submit_button">Sign Up</button>
+        </div>
+      </form>
+    </div>
     </div>
 
     <!-- footer -->
