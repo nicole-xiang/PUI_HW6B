@@ -41,12 +41,12 @@
             <!-- <img data-image="blueSmoothie" src="images/blueSmoothie.png" alt="blueberry flavored">
             <img data-image="peachSmothie" src="images/peachSmoothie.png" alt="peach flavored"> -->
             <form class="purchase_form" onsubmit="return addItem()">
-                <input type="radio" id="one_time" name="purchase_option" value="One time purchase">
+                <input type="radio" id="one_time" name="purchase_option" value="One time purchase" onclick="toggleDelivery('one_time')">
                 <label for="one_time">One time purchase ($43.99 | $3.50/bottle)</label><br>
-                <input type="radio" id="subscribe" name="purchase_option" value="Subscribe & purchase">
+                <input type="radio" id="subscribe" name="purchase_option" value="Subscribe & purchase" onclick="toggleDelivery('subscribe')">
                 <label for="subscribe">Subscribe & purchase ($35.99 | $3.09/bottle)</label><br>
                 <br>
-                <label for="delivery">Deliver Every</label>
+                <label for="delivery" id="delivery_label">Deliver Every</label>
                 <br>
                 <select id="delivery" name="delivery">
                     <option value="14">14 Days</option>

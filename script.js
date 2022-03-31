@@ -1,3 +1,4 @@
+// create drink object
 class cartItem {
     constructor(tag, title, flavor, quantity, deliveryPeriod, itemPrice) {
         this.tag = tag; // string for image
@@ -9,7 +10,19 @@ class cartItem {
         this.total = (this.quantity * this.itemPrice).toFixed(2) // item total (int)
     }
   }
-
+  
+// change delivery period style based on subscription 
+function toggleDelivery(type){
+    if (type == "one_time"){
+        document.getElementById("delivery").disabled = true;
+        document.getElementById("delivery_label").style.color = 'gray'; 
+    }
+    else{
+        document.getElementById("delivery").disabled = false; 
+        document.getElementById("delivery_label").style.color = 'black'; 
+    }
+}
+// change flavor image 
 function changeImage(flavor,ele) {
     var source = "images/"+flavor+".png"
     document.getElementById("active_sel").src = source;
@@ -27,7 +40,7 @@ function changeImage(flavor,ele) {
         document.getElementById("active_sel").src = "images/berryOriginal.png";
     }
 }
-
+// helper: set new drinks in cart
 function setDrinkCart(product){
     // update local storage
     let itemsInCart = localStorage.getItem('itemsInCart');
@@ -54,7 +67,7 @@ function setDrinkCart(product){
     // add items into cart local storage
     localStorage.setItem('itemsInCart',JSON.stringify(itemsInCart));
 }
-
+// add item to cart
 function addItem(){
     // update number of items in cart logo
     console.log("setting quantity");
@@ -89,6 +102,7 @@ function addItem(){
     alert("Added item to cart");
     return false;
 }
+// called on reload
 function onLoadCart(){
     console.log("loading cart")
     let num_products = localStorage.getItem('num_items');
@@ -101,6 +115,7 @@ function onLoadCart(){
     removeWrapper();
     setTotalPayment();
 }
+// set total amount to pay on cart page
 function setTotalPayment(){
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
@@ -114,7 +129,8 @@ function setTotalPayment(){
         console.log(total);
         document.getElementById("cart_total").innerHTML = `$${total.toFixed(2)}`;
     }
- }
+}
+// wrapper function for removing item
 function removeWrapper(){
     // add delete function
     let itemsInCart = localStorage.getItem('itemsInCart');
@@ -138,7 +154,7 @@ function removeWrapper(){
         })
     }
 }
-
+// remove item from cart
 function removeItem(item) {
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
@@ -157,14 +173,13 @@ function removeItem(item) {
      
     let num_products = localStorage.getItem('num_items');
     num_products = parseInt(num_products); // convert to int
-    // console.log(item.quantity);
-    // console.log(num_products-item.quantity);
     localStorage.setItem('num_items',num_products-item.quantity);
     new_num = parseInt(localStorage.getItem('num_items')); // convert to int
     document.getElementById("num_items").innerHTML = new_num;
     // display drinks again
     location.reload()
 }
+// set cart quantity
 function setQuantity(){
     console.log("setting quantity")
     let num_products = localStorage.getItem('num_items');
@@ -183,7 +198,7 @@ function setQuantity(){
     }
     return false;
 }
-
+// display newly added drinks on cart page
 function displayDrink(){
     // get local storage drinks
     let itemsInCart = localStorage.getItem('itemsInCart');
@@ -229,6 +244,7 @@ function displayDrink(){
         })
     }
 }
+// change quantity function on cart page
 function changeQuant(item,sign){
     console.log(item);
     let num_products = localStorage.getItem('num_items');
@@ -258,7 +274,6 @@ function changeQuant(item,sign){
     
         }
     }
-    
     // update localStorage 
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
