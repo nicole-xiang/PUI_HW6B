@@ -178,7 +178,6 @@ function setTotalPayment(){
 }
 // wrapper function for removing item
 function removeWrapper(){
-    // add delete function
     let itemsInCart = localStorage.getItem('itemsInCart');
     itemsInCart = JSON.parse(itemsInCart);
     let cart_products = document.getElementsByClassName("cart_products");
@@ -189,7 +188,6 @@ function removeWrapper(){
         let deleteBtns = document.getElementsByClassName("delete");
         let incrBtns = document.getElementsByClassName("plus");
         let decrBtns = document.getElementsByClassName("minus");
-        // console.log(Object.length);
         Object.values(itemsInCart).map(item => {
             console.log(item);
             console.log(length-i);
@@ -252,7 +250,7 @@ function displayDrink(){
     let cart_products = document.getElementsByClassName("cart_products");
     // empty cart: display message
     if ((JSON.stringify(itemsInCart) === '{}' || itemsInCart == null) && cart_products.length!=0){
-        cart_products[0].innerHTML += "<h4>Empty Cart! Start shopping <a href='explore.html' id='empty_cart_link'>here</a></h4>";
+        cart_products[0].innerHTML += "<h4 id='empty_cart_message'>Empty Cart! Start shopping <a href='explore.html' id='empty_cart_link'>here</a></h4>";
     }
     // on the cart page AND exists items in cart
     if (itemsInCart && cart_products.length!=0){

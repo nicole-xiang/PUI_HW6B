@@ -449,6 +449,9 @@ textarea{
     color:black;
 }
 /* cart page */
+#empty_cart_message{
+    margin-bottom: 10%;
+}
 .cart_page{
     margin-bottom: 3%;
 }

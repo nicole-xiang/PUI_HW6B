@@ -17,3 +17,9 @@ Please follow the following navigation steps to view all features implemented:
 11. If you want to login, you can click on the login button on top right. But this feature isn't implemented yet. 
 
 Thank you for browsing my website! 
+
+## Bonus Features (included in navigation steps)
+1. Load more / hide comments on the product details page (step 7 of above steps)
+2. Toggle delivery period feature on product details page (step 4)
+3. Promote "continue shopping" when the cart is empty (step 10)    
+
