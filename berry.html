@@ -14,7 +14,7 @@
     <!-- nav bar -->
     <div class="nav">
       <div id="nav_container">
-        <h3 class = logo>Nature.io</h3>
+        <h3 class = logo><a href="index.html" id="logo_a">Nature.io</a></h3>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a class="active" href="explore.html">Explore</a></li>
@@ -82,15 +82,18 @@
                 <br><br><br><br><br>
                 <!-- flavors -->
                 <div class="flavors">
-                    <p>Choose Your Flavor</p>
-                    <div class="column">
+                    <p class="flavors_section">Choose Your Flavor</p>
+                    <div class="column flavor">
                       <img class="f_option" src="images/raspberry.png" alt="Raspberry" onclick="changeImage('berryRaspberry',1)" width="70%">
+                      <p class="flavor_title">Raspberry</p>
                     </div>
-                    <div class="column">
+                    <div class="column flavor">
                       <img class="f_option" src="images/blueberry.png" alt="Blueberry" onclick="changeImage('berryBlueberry',2)" width="70%">
+                      <p class="flavor_title">Blueberry</p>
                     </div>
-                    <div class="column">
+                    <div class="column flavor">
                       <img class="f_option" src="images/peach.png" alt="Peach" onclick="changeImage('berryPeach',3)" width="70%">
+                      <p class="flavor_title">Peach</p>
                     </div>
                 </div>
             </div>
@@ -137,7 +140,7 @@
             <!-- reviews -->
             <div class="reviews">
                 <h1>Reviews</h1>
-                <div class="container">
+                <div class="container user_comment">
                     <!-- user -->
                     <div class="r_left_col">
                         <p class="user">
@@ -151,7 +154,7 @@
                         <img src="images/5stars.png">
                     </div>
                 </div>
-                <div class="container">
+                <div class="container user_comment">
                     <!-- user -->
                     <div class="r_left_col">
                         <p class="user">
@@ -165,7 +168,7 @@
                         <img src="images/rating.png">
                     </div>
                 </div>
-                <div class="container">
+                <div class="container user_comment">
                     <!-- user -->
                     <div class="r_left_col">
                         <p class="user">
@@ -180,7 +183,7 @@
                     </div>
                 </div>
                 <br>
-                <a href="#" class="more_comments">Load More Comments</a>
+                <a class="more_comments" onclick="loadComments()">Load More Comments</a>
             </div>
         </div>
     </div>

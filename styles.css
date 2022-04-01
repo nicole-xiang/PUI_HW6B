@@ -40,7 +40,9 @@ p{
     margin: 0 auto;
     height: 70px;
 }
-
+#nav_container a:hover{
+    color:white;
+}
 .nav {
     background-color: #FFBE0B;
     text-align:center;
@@ -58,7 +60,9 @@ p{
 .login:hover{
     color:white;
 }
-
+#logo_a:hover{
+    color:white;
+}
 .cart {
     float:right;
     text-decoration: none;
@@ -264,7 +268,7 @@ div.more_product {
     padding: 10px;
   }
 
-.flavors img:hover{
+.flavor:hover{
     opacity: 0.8;
     cursor: pointer;
 }
@@ -273,7 +277,7 @@ div.more_product {
     clear: both;
     display: table;
 }
-.flavors p{
+.flavors_section{
     background:#ffd972;
     width: 24%;
     padding:5px;
@@ -281,6 +285,13 @@ div.more_product {
     border-radius: 5px;
     text-align: center;
 }
+.flavor_title {
+    font-size: 15px;
+    margin:0;
+    padding:0;
+    margin-left: 5%;
+}
+
 .purchase_form{
     margin-top:0;
     margin-left:10%;
@@ -357,6 +368,10 @@ input[type=radio],label[for=one_time], label[for=subscribe] {
     color:rgb(32, 32, 32);
     font-weight: 200px;
 } 
+.more_comments:hover {
+    /* color:black; */
+    cursor: pointer;
+}
 .more_comments{
     text-decoration: none;
     color:black;

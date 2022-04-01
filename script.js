@@ -10,7 +10,53 @@ class cartItem {
         this.total = (this.quantity * this.itemPrice).toFixed(2) // item total (int)
     }
   }
-  
+
+// load more comments
+function loadComments(){
+    let reviews = document.getElementsByClassName("reviews");
+    let comments = document.getElementsByClassName("user_comment");
+    console.log(comments.length);
+    if (reviews.length != 0 && comments.length<=3){
+        reviews[0].innerHTML += `
+        <div class="container user_comment extra_comments">
+            <!-- user -->
+            <div class="r_left_col">
+                <p class="user">
+                    Barnaby<br>
+                    12/15/21
+                </p>
+            </div>
+            <!-- comment -->
+            <div class="r_right_col">
+                <p class="comment">Absolutely delicious! As a bartender, i appreciate well balanced beverages, and juice blends and smoothies can really miss the mark either too sweet or bitter. Mine was perfect, they really nail it here! </p>
+                <img src="images/5stars.png">
+            </div>
+        </div>
+        <div class="container user_comment extra_comments">
+            <!-- user -->
+            <div class="r_left_col">
+                <p class="user">
+                    Barnaby<br>
+                    12/15/21
+                </p>
+            </div>
+            <!-- comment -->
+            <div class="r_right_col">
+                <p class="comment">Absolutely delicious! As a bartender, i appreciate well balanced beverages, and juice blends and smoothies can really miss the mark either too sweet or bitter. Mine was perfect, they really nail it here! </p>
+                <img src="images/5stars.png">
+            </div>
+        </div>`
+        document.getElementsByClassName("more_comments")[0].innerHTML = "View Less";
+    }
+    else{
+        console.log(document.getElementsByClassName("extra_comments"));
+        const elements = document.getElementsByClassName('extra_comments');
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+        document.getElementsByClassName("more_comments")[0].innerHTML = "Load More Comments";
+    } 
+}
 // change delivery period style based on subscription 
 function toggleDelivery(type){
     if (type == "one_time"){
