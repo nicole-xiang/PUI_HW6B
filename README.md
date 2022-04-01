@@ -16,4 +16,4 @@ Please follow the following navigation steps to view all features implemented:
 10. You no longer want these items so click on the trash icon to delete both items. You should see "Empty Cart! Starting shopping here." Click on "here" to continue shopping. 
 11. If you want to login, you can click on the login button on top right. But this feature isn't implemented yet. 
 
-Thank you for browing my website! 
+Thank you for browsing my website! 
